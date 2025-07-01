@@ -8,9 +8,7 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background: transparent;
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
+      background: linear-gradient(135deg, #2d0036 0%, #a8006c 50%, #00bcd4 100%);
       color: white;
       font-family: sans-serif;
       display: flex;
@@ -60,49 +58,7 @@
   <div id="toolbar">
     <button onclick="window.close()">❌</button>
   </div>
-  <div id="chat-area"></div>
-  <div id="input-area">
-    <input id="user-input" placeholder="Ask me anything..." onkeydown="handleKey(event)" />
-  </div>
-
-  <script>
-    const chatArea = document.getElementById("chat-area");
-
-    async function handleKey(e) {
-      if (e.key === "Enter") {
-        const input = e.target.value;
-        e.target.value = "";
-        appendMessage("You", input);
-        const reply = await getGPTResponse(input);
-        appendMessage("ChatGPT", reply);
-      }
-    }
-
-    function appendMessage(sender, text) {
-      const msg = document.createElement("div");
-      msg.innerHTML = `<b>${sender}:</b> ${text}`;
-      msg.style.marginBottom = "15px";
-      chatArea.appendChild(msg);
-      chatArea.scrollTop = chatArea.scrollHeight;
-    }
-
-    async function getGPTResponse(prompt) {
-      const apiKey = "sk-REPLACE_WITH_YOUR_KEY"; // Replace with your OpenAI API key
-      const res = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-          model: "gpt-3.5-turbo",
-          messages: [{ role: "user", content: prompt }]
-        })
-      });
-      const data = await res.json();
-      return data.choices?.[0]?.message?.content || "(No response)";
-    }
-  </script>
+  <iframe id="chatgpt-frame" src="https://chat.openai.com" style="width:100%;height:calc(100vh - 40px);border:none;"></iframe>
 </body>
 </html>
 
