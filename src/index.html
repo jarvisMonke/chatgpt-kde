@@ -15,6 +15,98 @@
       flex-direction: column;
     }
 
+    /* Preserve code block background and syntax highlighting */
+    pre, code {
+      background: #23272e !important;
+      color: unset !important;
+      font-family: "Fira Mono", "Consolas", "Monaco", monospace;
+    }
+
+
+    /* Ensure all interactive elements remain clickable and functional */
+    button, input, select, textarea, label, [role="button"], [aria-haspopup], [aria-expanded], [data-state], .composer-btn, .icon {
+      pointer-events: auto !important;
+      user-select: auto !important;
+      color: inherit;
+      -webkit-app-region: no-drag;
+    }
+
+    /* Prevent overlaying drag region on toolbar buttons */
+    #toolbar button, #toolbar input, #toolbar label, #toolbar select, #toolbar textarea {
+      -webkit-app-region: no-drag;
+    }
+    pre {
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+      /* Allow syntax highlighting colors to show */
+      color: unset !important;
+    }
+    code {
+      border-radius: 4px;
+      padding: 2px 6px;
+      color: unset !important;
+    }
+
+    /* Support for ChatGPT's code block syntax highlighting */
+    pre code span.token.comment,
+    pre code span.token.prolog,
+    pre code span.token.doctype,
+    pre code span.token.cdata {
+      color: #6a9955 !important;
+    }
+    pre code span.token.punctuation {
+      color: #d4d4d4 !important;
+    }
+    pre code span.token.property,
+    pre code span.token.tag,
+    pre code span.token.constant,
+    pre code span.token.symbol,
+    pre code span.token.deleted {
+      color: #ce9178 !important;
+    }
+    pre code span.token.boolean,
+    pre code span.token.number {
+      color: #b5cea8 !important;
+    }
+    pre code span.token.selector,
+    pre code span.token.attr-name,
+    pre code span.token.string,
+    pre code span.token.char,
+    pre code span.token.builtin,
+    pre code span.token.inserted {
+      color: #b5cea8 !important;
+    }
+    pre code span.token.operator,
+    pre code span.token.entity,
+    pre code span.token.url,
+    pre code span.token.variable {
+      color: #d4d4d4 !important;
+    }
+    pre code span.token.atrule,
+    pre code span.token.attr-value,
+    pre code span.token.function,
+    pre code span.token.class-name {
+      color: #4ec9b0 !important;
+    }
+    pre code span.token.keyword {
+      color: #569cd6 !important;
+    }
+    pre code span.token.regex,
+    pre code span.token.important {
+      color: #d16969 !important;
+    }
+    pre code span.token.important,
+    pre code span.token.bold {
+      font-weight: bold;
+    }
+    pre code span.token.italic {
+      font-style: italic;
+    }
+    pre code span.token.entity {
+      cursor: help;
+    }
+
     #toolbar {
       -webkit-app-region: drag;
       padding: 10px;
