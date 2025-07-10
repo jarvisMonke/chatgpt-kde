@@ -5,6 +5,7 @@ function createWindow() {
     width: 900,
     height: 700,
     frame: true,
+    icon: '/usr/share/pixmaps/chatgpt_cool.png',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: false

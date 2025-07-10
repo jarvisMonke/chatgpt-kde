@@ -13,15 +13,25 @@ if [[ -z "$APP_DIR" ]]; then
   exit 1
 fi
 
-# Copy to /opt (requires sudo)
-sudo cp -r "$APP_DIR" /opt/chatgpt-kde
+
+# Remove any previous install
+sudo rm -rf /opt/chatgpt-kde
+
+# Copy contents of build dir to /opt/chatgpt-kde
+sudo mkdir -p /opt/chatgpt-kde
+sudo cp -r "$APP_DIR"/* /opt/chatgpt-kde/
+
+# Copy icon to system pixmaps directory for desktop integration
+sudo cp "$(dirname "$0")/chatgpt_cool.png" /usr/share/pixmaps/chatgpt_cool.png
 
 # Create desktop entry
+
+# Create desktop entry using system icon path
 cat <<EOF | sudo tee /usr/share/applications/chatgpt-kde.desktop > /dev/null
 [Desktop Entry]
 Name=ChatGPT KDE
 Exec=/opt/chatgpt-kde/chatgpt-kde
-Icon=/opt/chatgpt-kde/resources/chatgpt_cool.png
+Icon=chatgpt_cool
 Type=Application
 Categories=Utility;
 EOF
